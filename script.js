@@ -1,6 +1,5 @@
-// storing the expenses
-
-let expenses = []; // Array to store all expense objects
+//2. storing the expenses
+let expenses = []; // Array for storing all expense objects
 
 // Adding a new expense when the form is submitted
 function addExpense(event) {
@@ -11,9 +10,9 @@ function addExpense(event) {
   const name = nameInput.value.trim();
   const amount = Number(amountInput.value);
 
-  // Inputing validation
+  // Input validation
   if (name === "" || isNaN(amount) || amount <= 0) {
-    alert("Please enter a valid expense name and a positive amount, lovely!");
+    alert("Please enter a valid expense name and a positive amount ");
     return;
   }
 
@@ -28,15 +27,12 @@ function addExpense(event) {
   renderExpenses();
   updateTotal();
 }
-
 document.getElementById('expense-form').addEventListener('submit', addExpense);
 
-
-//Displaying the list of expenses
+//3.Displaying the List of Expenses
 function renderExpenses() {
   const expenseList = document.getElementById('expense-list');
-  expenseList.innerHTML = ""; // Clears the current list
-
+  expenseList.innerHTML = ""; // Clearing the current list
   expenses.forEach(function(expense, index) {
     const li = document.createElement('li');
     li.innerHTML = `<span>🌸 ${expense.name}: <b>${expense.amount.toLocaleString()}</b> Ksh</span>
@@ -45,7 +41,7 @@ function renderExpenses() {
   });
 }
 
-//Showing the total amount spent 
+//4.Showing the Total Amount Spent 
 function updateTotal() {
   const total = expenses.reduce(function(sum, expense) {
     return sum + expense.amount;
@@ -53,14 +49,13 @@ function updateTotal() {
   document.getElementById('total-amount').textContent = total.toLocaleString();
 }
 
-//Code organization and best practices
+//5. Code Organization and Best Practices
 // Deleting an expense by index 
 function deleteExpense(index) {
   expenses.splice(index, 1); // Removing the item from the array
   renderExpenses();          // Updating the list display
   updateTotal();             // Updating the total
 }
-
 // Initial rendering when the page loads
 renderExpenses();
 updateTotal();
